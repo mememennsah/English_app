@@ -1,0 +1,67 @@
+/* スタイルは現状を活かしたままです */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.word-box {
+    margin: 20px 0;
+}
+.label {
+    font-weight: bold;
+}
+.result {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: green;
+}
+.result.ng {
+    color: red;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.back-btn {
+    background-color: #6c757d;
+}
+.back-btn:hover {
+    background-color: #5a6268;
+}
+.flash-message {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.flash-success {
+    color: green;
+    background-color: #eaffea;
+}
+.flash-error {
+    color: red;
+    background-color: #ffeaea;
+}
