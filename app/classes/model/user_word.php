@@ -2,8 +2,6 @@
 class Model_User_Word
 {
     
-
-
     public static function get_user_words($user_id)
     {
         return DB::select('user_words.*', 'words.word', 'words.translation')
@@ -21,11 +19,6 @@ class Model_User_Word
         try {
             // 入力値をログに記録
             Log::info('add_user_word called with parameters: user_id=' . print_r($user_id, true) . ', word_id=' . print_r($word_id, true) . ', status=' . print_r($status, true));
-
-            $user_id = $user_id;
-            $word_id = $word_id;
-            $status = $status;
-
 
             // 重複チェック
             $existing = DB::select()

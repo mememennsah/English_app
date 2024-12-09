@@ -1,4 +1,3 @@
-<!-- wordsテーブルにcorrectを加えた後の修正 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -69,24 +68,14 @@
             <form action="next" method="post" style="display: inline;">
                 <button type="submit" title="次の単語を表示する">次へ</button>
             </form>
-        </div>
-
-        <!-- 戻るリンク -->
-        <!-- <div style="margin-top: 20px;">
-            <a href="auth/index" class="back-btn">前のページに戻る</a>
-        </div> -->
+        </div>   
     </div>
 
     <div>
-    <!-- 単語追加ボタン -->
-        
+    <!-- 単語追加ボタン -->    
         <form action="add" method="post">
                 <button type="submit" title="単語を追加">単語を追加</button>
-        </form>
-        
-        <!-- <form action="auth/logout" method="post">
-                <button type="submit" title="ログアウト">ログアウト</button>
-        </form> -->
+        </form>    
     </div>
 
 </body>

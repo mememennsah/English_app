@@ -21,8 +21,7 @@ class Controller_Words extends Controller
             Session::set_flash('error', 'ログインが必要です。');
             Response::redirect('auth/login');
         }
-        
-        
+  
     }
 
     
@@ -74,12 +73,6 @@ class Controller_Words extends Controller
     {
         // セッションからログイン中のユーザーIDを取得
         $user_id = Session::get('user_id');
-
-        // if (!$user_id) {
-        //     // ユーザーがログインしていない場合
-        //     Session::set_flash('error', 'ログインが必要です。');
-        //     Response::redirect('auth/login'); // ログインページにリダイレクト
-        // }
 
         // フォームから送信されたデータを取得
         $data = [
