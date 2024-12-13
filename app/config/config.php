@@ -12,6 +12,8 @@
 
 return array(
 
+	 // 現在の環境名を設定
+	 'environment' => 'development',
 	/**
 	 * base_url - The base URL of the application.
 	 * MUST contain a trailing slash (/)

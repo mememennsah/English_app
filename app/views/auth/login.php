@@ -12,6 +12,9 @@
     <?php endif; ?>
 
     <form action="/auth/login" method="post">
+        <!-- CSRFトークンの埋め込み -->
+        <input type="hidden" name="<?= Config::get('security.csrf_token_key') ?>" value="<?= Security::fetch_token() ?>">
+
         <p>
             <label for="username">ユーザー名:</label>
             <input type="text" name="username" id="username" required>

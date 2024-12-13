@@ -42,17 +42,7 @@ class Model_Word
         return $result ? $result[0] : null;
     }
 
-    // 正誤判定を更新する
-    // public static function update_correct($id, $is_correct)
-    // {
-    //     $query = self::get_db()->query("UPDATE words SET correct = :correct, updated_at = :updated_at WHERE id = :id");
-    //     $query->bind(':correct', $is_correct ? 1 : 0);
-    //     $query->bind(':updated_at', time());
-    //     $query->bind(':id', $id);
-    //     return $query->execute();
-    // }
-
-        public static function update_correct($id, $is_correct)
+    public static function update_correct($id, $is_correct)
     {
         try {
             // 更新クエリを実行
@@ -73,8 +63,20 @@ class Model_Word
         }
     }
 
+    /**
+     * 正答数を取得する
+     *
+     * @return int 正答数
+     */
+    public static function get_correct_count()
+    {
+        // クエリビルダを使用して正答数を取得
+        $result = DB::select(DB::expr('COUNT(*) as correct_count'))
+            ->from('words')
+            ->where('correct', '=', 1) // correctフラグが1のレコードを取得
+            ->execute();
 
-
-
+        return (int)$result->get('correct_count', 0);
+    }
 
 }
