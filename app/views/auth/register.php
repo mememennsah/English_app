@@ -6,6 +6,9 @@
 
 <?php echo Form::open(['action' => 'auth/register', 'method' => 'post']); ?>
 
+    <!-- CSRFトークンの埋め込み -->
+    <input type="hidden" name="<?= Config::get('security.csrf_token_key') ?>" value="<?= Security::fetch_token() ?>">
+
     <p>
         <?php echo Form::label('ユーザー名', 'username'); ?>
         <?php echo Form::input('username', Input::post('username'), ['required' => true]); ?>

@@ -12,6 +12,9 @@
     <?php endif; ?>
 
     <form action="create" method="post">
+        <!-- CSRFトークンの埋め込み -->
+        <input type="hidden" name="<?= Config::get('security.csrf_token_key') ?>" value="<?= Security::fetch_token() ?>">
+        
         <p>
             <label for="word">単語:</label>
             <input type="text" name="word" id="word" required>
@@ -27,7 +30,9 @@
 
     <!-- <p><a href="words/index">戻る</a></p> -->
     <form action="index" method="post">
-            <button type="submit" title="前のページに戻る">戻る</button>
+        <button type="submit" title="前のページに戻る">戻る</button>
+        <!-- CSRFトークンの埋め込み -->
+        <input type="hidden" name="<?= Config::get('security.csrf_token_key') ?>" value="<?= Security::fetch_token() ?>">
     </form>
 </body>
 </html>

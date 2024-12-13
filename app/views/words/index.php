@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/words-index.css">
-    <script src="/assets/js/words-index.js"></script>
+    <script type='text/javascript' src='/assets/js/knockout-3.5.1.js'></script>
+    <script src="/assets/js/app.js" defer></script>
     <title>英単語帳</title>
     
 </head>
@@ -25,6 +26,12 @@
             </div>
         <?php endif; ?>
 
+        <!-- 正答数の表示部分 -->
+        <div class="correct-count-section">
+        <h2>知ってる単語</h2>
+        <p class="correct-count" data-bind="text: correctCount">0</p>
+        </div>
+
         <!-- 単語情報 -->
         <div class="word-box">
             <p class="label">英単語:</p>
@@ -44,29 +51,33 @@
             <!-- 戻るボタン -->
             <form action="back" method="post" style="display: inline;">
                 <button type="submit" class="back-btn" title="前の単語に戻る">前へ</button>
+                <!-- CSRF対策 -->
+                <?= Form::hidden(Config::get('security.csrf_token_key'), Security::fetch_token()) ?>
             </form>
 
             <!-- 知らないボタン -->
             <form action="unknown" method="post" style="display: inline;">
                 <input type="hidden" name="id" value="<?= isset($word['id']) ? htmlspecialchars($word['id']) : ''; ?>">
+                <!-- CSRF対策 -->
+                <?= Form::hidden(Config::get('security.csrf_token_key'), Security::fetch_token()) ?>
                 <button type="submit" title="単語を知らないとして記録する">知らない</button>
                 <tr>
-                <!-- knockout -->
-                <p data-bind="text: message"></p>
             </form>
 
             <!-- 知ってる！ボタン -->
             <form action="known" method="post" style="display: inline;">
                 <input type="hidden" name="id" value="<?= isset($word['id']) ? htmlspecialchars($word['id']) : ''; ?>">
+                <!-- CSRF対策 -->
+                <?= Form::hidden(Config::get('security.csrf_token_key'), Security::fetch_token()) ?>
                 <button type="submit" title="単語を知っているとして記録する">知ってる！</button>
                 <tr>
-                <!-- knockout -->
-                <p data-bind="text: message"></p>
             </form>
 
             <!-- 次へボタン -->
             <form action="next" method="post" style="display: inline;">
                 <button type="submit" title="次の単語を表示する">次へ</button>
+                <!-- CSRF対策 -->
+                <?= Form::hidden(Config::get('security.csrf_token_key'), Security::fetch_token()) ?>
             </form>
         </div>   
     </div>
@@ -74,7 +85,9 @@
     <div>
     <!-- 単語追加ボタン -->    
         <form action="add" method="post">
-                <button type="submit" title="単語を追加">単語を追加</button>
+            <button type="submit" title="単語を追加">単語を追加</button>
+            <!-- CSRF対策 -->
+            <?= Form::hidden(Config::get('security.csrf_token_key'), Security::fetch_token()) ?>
         </form>    
     </div>
 

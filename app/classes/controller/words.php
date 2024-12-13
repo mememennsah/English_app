@@ -71,6 +71,12 @@ class Controller_Words extends Controller
     // 単語の追加処理
     public function action_create()
     {
+        // CSRF対策
+        if (Input::method() === 'POST' && !Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index'); // 不正リクエストの場合リダイレクト
+        }
+
         // セッションからログイン中のユーザーIDを取得
         $user_id = Session::get('user_id');
 
@@ -123,6 +129,12 @@ class Controller_Words extends Controller
 
     public function action_back()
     {
+        // CSRF対策
+        if (!Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index');
+        }
+        
         // 現在の単語 ID をセッションから取得（デフォルトで1）
         $current_id = Session::get('current_word_id', 1);
 
@@ -157,6 +169,12 @@ class Controller_Words extends Controller
         // 「知らない」ボタン処理
     public function action_unknown()
     {
+        // CSRF対策
+        if (!Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index');
+        }
+        
         $this->update_word_status(false, '単語を「知らない」として記録しました。');
     }
 
@@ -164,6 +182,12 @@ class Controller_Words extends Controller
     // 「知ってる！」ボタン処理
     public function action_known()
     {
+        // CSRF対策
+        if (!Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index');
+        }
+        
         $this->update_word_status(true, '単語を「知ってる！」として記録しました。');
     }
 
@@ -171,6 +195,12 @@ class Controller_Words extends Controller
     // 単語の状態を更新する共通メソッド
     private function update_word_status($is_correct, $success_message)
     {
+        // CSRF対策
+        if (!Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index');
+        }
+
         // POSTから単語IDを取得
         $id = Input::post('id');
 
@@ -193,8 +223,14 @@ class Controller_Words extends Controller
     // 「次」ボタン処理
     public function action_next()
     {
+        // CSRF対策
+        if (!Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index');
+        }
+        
         // 現在の単語 ID をセッションから取得（デフォルトで1）
-        $current_id = Session::get('current_word_id', 1);
+        $current_id = Session::get('current_word_id', 2);
 
         // 次の単語 ID を設定
         $next_id = $current_id + 1;
@@ -227,6 +263,17 @@ class Controller_Words extends Controller
 
         // `action_index` にリダイレクト
         Response::redirect('words/index');
+    }
+
+    public function action_correct_count()
+    {
+        try{
+            // Model_Wordのメソッドを呼び出して正答数を取得
+            $correct_count = Model_Word::get_correct_count();
+            return Response::forge(json_encode(['correct_count' => $correct_count]), 200, ['Content-Type' => 'application/json']);
+        } catch (Exception $e) {
+            Log::error('Failed to fetch correct count: ' . $e->getMessage());    
+        }
     }
 
     

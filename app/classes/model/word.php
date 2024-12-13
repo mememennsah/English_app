@@ -63,4 +63,20 @@ class Model_Word
         }
     }
 
+    /**
+     * 正答数を取得する
+     *
+     * @return int 正答数
+     */
+    public static function get_correct_count()
+    {
+        // クエリビルダを使用して正答数を取得
+        $result = DB::select(DB::expr('COUNT(*) as correct_count'))
+            ->from('words')
+            ->where('correct', '=', 1) // correctフラグが1のレコードを取得
+            ->execute();
+
+        return (int)$result->get('correct_count', 0);
+    }
+
 }

@@ -2,10 +2,20 @@
 
 class Controller_Auth extends Controller
 {
+    public function before()
+    {
+        parent::before();
+        // CSRF チェック
+        if (Input::method() === 'POST' && !Security::check_token()) {
+            Session::set_flash('error', '不正なリクエストです。');
+            Response::redirect('words/index');
+        }
+    }
+    
     // ログイン画面を表示
     public function action_login()
     {
-        if (Input::method() == 'POST') {
+        if (Input::method() == 'POST') { 
             $username = Input::post('username');
             $password = Input::post('password');
     

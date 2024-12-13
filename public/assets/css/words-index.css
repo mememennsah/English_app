@@ -65,3 +65,54 @@ button:hover {
     color: red;
     background-color: #ffeaea;
 }
+
+/* 正答数を表示するセクションのスタイル */
+.correct-count-section {
+    margin: 20px auto;
+    text-align: center;
+    padding: 15px;
+    border: 2px solid #4caf50; /* 緑色の枠線 */
+    border-radius: 8px; /* コーナーを丸くする */
+    background-color: #f0fff0; /* 薄い緑色の背景 */
+    width: 60%; /* セクションの幅を少し広げる */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* ボックスの影 */
+}
+
+/* 正答数のタイトルのスタイル */
+.correct-count-section h2 {
+    font-size: 20px; /* タイトルのフォントサイズを少し小さく */
+    color: #2e7d32; /* 深い緑色 */
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* 正答数の数字部分のスタイル */
+.correct-count {
+    font-size: 28px; /* 正答数のフォントサイズを小さく */
+    font-weight: bold;
+    color: #1b5e20; /* より強調された緑色 */
+    margin: 8px 0;
+}
+
+/* フラッシュメッセージが表示される部分のスタイル */
+.flash-message {
+    padding: 10px;
+    margin: 10px auto;
+    width: 90%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* 成功時のフラッシュメッセージ */
+.flash-success {
+    background-color: #e8f5e9; /* 成功の薄い緑背景 */
+    border: 1px solid #4caf50;
+    color: #2e7d32;
+}
+
+/* エラー時のフラッシュメッセージ */
+.flash-error {
+    background-color: #ffebee; /* エラーの薄い赤背景 */
+    border: 1px solid #e57373;
+    color: #d32f2f;
+}

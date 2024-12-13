@@ -28,3 +28,12 @@ Autoloader::add_classes([
     'Model_User_Word' => APPPATH . 'classes/model/user_word.php',
 ]);
 
+// Config::load() を使用して設定を読み込み
+Config::load('myconfig', true); // true は設定を独自のグループにロードする
+$site_name = Config::get('site_name'); // "My Awesome App" を取得
+$items_per_page = Config::get('items_per_page'); // 20 を取得
+
+// 設定値をプログラムから変更する場合
+// Config::set('myconfig.items_per_page', 50);
+// $new_value = Config::get('myconfig.items_per_page'); // 50 を取得
+
